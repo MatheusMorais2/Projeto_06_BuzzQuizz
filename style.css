@@ -1,0 +1,163 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto';
+  background-color: #e5e5e5;
+}
+
+/* Tela 1 - INICIO */
+header {
+  height: 69px;
+  background-color: #ec362d;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 37px;
+  line-height: 43px;
+  color: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.seus-quizzes {
+  height: 181px;
+  width: 1051px;
+
+  margin-top: 4%;
+  border: 1px dashed #919191;
+  box-sizing: border-box;
+  border-radius: 5px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 23px;
+  color: #919191;
+  text-align: center;
+}
+
+.criar-quizz {
+  width: 151px;
+  height: 40px;
+
+  border: 1px dashed #ec362d;
+  box-sizing: border-box;
+  border-radius: 50px;
+  background-color: #e5e5e5;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 21px;
+  line-height: 25px;
+  color: #ec362d;
+}
+
+.todos-quizzes {
+  width: 1066px;
+
+  margin-top: 5%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.titulo {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+
+  margin-left: 15px;
+}
+
+.opcoes-quizzes {
+  margin-top: 12px;
+}
+
+.quizz {
+  width: 340px;
+  height: 181px;
+  position: relative;
+
+  border-radius: 5px;
+  margin-left: 15px;
+  margin-bottom: 12px;
+
+  background-size: 340px 181px;
+}
+
+.nome-quizz {
+  width: 301px;
+  height: 54px;
+
+  position: absolute;
+  bottom: 5px;
+  left: 17px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 19px;
+  line-height: 22px;
+  color: #ffffff;
+}
+/* Tela 1 - FIM */
+.display-none {
+  display: none;
+}
+/* Tela 2 - INICIO */
+.tela2 {
+  position: fixed;
+  background-color: blue;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+/* Tela 2 - FIM */
+
+@media (max-width: 1100px) {
+  /* Tela 1 - INICIO mobile*/
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .seus-quizzes {
+    height: 181px;
+    width: 340px;
+  }
+  .todos-quizzes {
+    width: 340px;
+  }
+  .quizz {
+    margin-left: 0px;
+  }
+  .titulo {
+    margin-left: 0px;
+  }
+  /* Tela 1 - FIM mobile*/
+}
