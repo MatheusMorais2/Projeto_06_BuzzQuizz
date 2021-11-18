@@ -206,12 +206,6 @@ ul {
 }
 
 .opcoes-resposta {
-  position: absolute;
-  top: 186.06px;
-  left: 36.43px;
-  right: 36.43px;
-  bottom: 35.66px;
-
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -219,8 +213,6 @@ ul {
 .opcao-resposta {
   width: 329.91px;
   height: 217.06px;
-
-  margin-bottom: 18.61px;
 
   display: flex;
   flex-wrap: wrap;
@@ -260,6 +252,40 @@ ul {
     height: 114px;
     font-size: 19px;
     line-height: 22px;
+  }
+  .pergunta {
+    width: 375px;
+    height: 436px;
+  }
+  .opcao-resposta {
+    width: 163px;
+    height: 140px;
+  }
+  .img-pergunta {
+    width: 163px;
+    height: 113px;
+  }
+  .todasRespostas {
+    padding: 13px 18px;
+  }
+  .titulo-pergunta {
+    width: 340px;
+    height: 89px;
+
+    font-style: normal;
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 22px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .opcao-pergunta {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 15px;
   }
 }
 
