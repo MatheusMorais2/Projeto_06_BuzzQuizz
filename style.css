@@ -111,6 +111,25 @@ ul {
   background-size: 340px 181px;
 }
 
+.img-tela2 {
+  height: 227px;
+  width: 100%;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 39px;
+  line-height: 46px;
+  text-align: center;
+  color: #ffffff;
+}
+
 .nome-quizz {
   width: 301px;
   height: 54px;
@@ -130,11 +149,87 @@ ul {
 }
 /* Tela 2 - INICIO */
 .tela2 {
-  position: fixed;
-  background-color: blue;
+  top: 69px;
+  background-color: #e5e5e5;
   width: 100%;
   height: 100%;
+  height: auto;
   z-index: 1;
+}
+.caixa-perguntas {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pergunta {
+  width: 759px;
+  height: 676px;
+  margin-top: 42px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.todasRespostas {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px 35px;
+  justify-content: space-between;
+}
+.caixote {
+  display: flex;
+  flex-wrap: wrap;
+}
+.titulo-pergunta {
+  width: 688.16px;
+  height: 137.99px;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 23px;
+  line-height: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+}
+.img-pergunta {
+  width: 329.91px;
+  height: 175.2px;
+}
+
+.opcoes-resposta {
+  position: absolute;
+  top: 186.06px;
+  left: 36.43px;
+  right: 36.43px;
+  bottom: 35.66px;
+
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.opcao-resposta {
+  width: 329.91px;
+  height: 217.06px;
+
+  margin-bottom: 18.61px;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+.opcao-pergunta {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
 }
 /* Tela 2 - FIM */
 
@@ -160,4 +255,10 @@ ul {
     margin-left: 0px;
   }
   /* Tela 1 - FIM mobile*/
+
+  .img-tela2 {
+    height: 114px;
+    font-size: 19px;
+    line-height: 22px;
+  }
 }
