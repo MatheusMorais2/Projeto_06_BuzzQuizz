@@ -42,6 +42,7 @@ function quizzTela2(resposta) {
     }</style>`
 
   const caixaPergunta = document.querySelector('.caixa-perguntas')
+  
   for (let i = 0; i < infoQuizz.questions.length; i++) {
     caixaPergunta.innerHTML += `<div class="pergunta">
     <div style="background-color: ${infoQuizz.questions[i].color}" class="titulo-pergunta">${infoQuizz.questions[i].title}</div>
@@ -51,11 +52,11 @@ function quizzTela2(resposta) {
     const tdsRespostas = document.querySelectorAll('.todasRespostas')
     for (let j = 0; j < infoQuizz.questions[i].answers.length; j++) {
       console.log(infoQuizz.questions[i].answers[j].text)
-      tdsRespostas[i].innerHTML += `<div class="opcao-resposta">
-          <img class="img-pergunta" src="${infoQuizz.questions[i].answers[j].image}"></img>
+      tdsRespostas[i].innerHTML += `<div class="opcao-resposta ${infoQuizz.questions[i].answers[j].isCorrectAnswer}" onclick="selecionarResposta(this)">
+          <div><img class="img-pergunta" src="${infoQuizz.questions[i].answers[j].image}"></img></div>
           <p class="opcao-pergunta">${infoQuizz.questions[i].answers[j].text}</p>
         </div>
-        `
+        `;
     }
   }
 
@@ -68,19 +69,26 @@ function quizzTela2(resposta) {
 
 
 // COMPORTAMENTO DAS RESPOSTAS
-const respostaCorretaQuiz = 'Abacate';
-function selecionarResposta(respEscolhida) {
-  const listaOpcoesRespostas = respEscolhida.parentNode;
-  const todasRespostas = listaOpcoesRespostas.children;
-  if (respEscolhida.innerText === respostaCorretaQuiz) {
-    respEscolhida.classList.add('resposta-correta'); 
-  } else {
-    respEscolhida.classList.add('resposta-errada'); 
-  }
-  for (let i=0; i<todasRespostas.length; i++) {
-    todasRespostas[i].innerHTML+= `<div class='esbranquicado'></div>`;
+
+function selecionarResposta(opcaoClicada) {
+  const parente = opcaoClicada.parentNode;
+  const todasRespostas = parente.children;
+  console.dir(parente.parentNode);
+  const imagens = [];
+  for (let i=0; i<todasRespostas.length;i++) {
+    if(todasRespostas[i].classList.contains('false')) {
+      todasRespostas[i].classList.add('resposta-errada');
+    } else {
+      todasRespostas[i].classList.add('resposta-correta');
+    }
+    imagens.push(todasRespostas[i].firstElementChild);
+    imagens[i].innerHTML += `<div class='esbranquicado'></div>`;
     todasRespostas[i].removeAttribute('onclick');
   }
-  respEscolhida.querySelector('.esbranquicado').remove();
-  //setTimeout( pegar a proxima irma da div da pergunta,2000)
-} 
+  opcaoClicada.firstElementChild.children[1].remove();
+  setTimeout(scrollar,2000, parente);
+}
+
+function scrollar(elemento) {
+  elemento.parentNode.nextElementSibling.scrollIntoView();
+}
