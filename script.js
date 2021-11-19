@@ -2,6 +2,8 @@ const solicitarQuizzes = axios.get(
   'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes'
 )
 solicitarQuizzes.then(quizzesPag1)
+let pontuacao = 0;
+let levelsDoQuizz = [];
 
 //APRESENTANDO QUIZZES DO SERVIDOR NA TELA 1
 function quizzesPag1(resposta) {
@@ -20,8 +22,10 @@ function infoQuizz() {
   )
   teste.then(quizzTela2)
 }
+
 function quizzTela2(resposta) {
-  const infoQuizz = resposta.data
+  const infoQuizz = resposta.data;
+  levelsDoQuizz= infoQuizz.levels;
   const fecharTela1 = document.querySelector('.tela1')
   fecharTela1.classList.add('display-none')
   const abrirTela2 = document.querySelector('.tela2')
@@ -37,7 +41,9 @@ function quizzTela2(resposta) {
       background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${infoQuizz.image});
     }</style>`
 
-  const caixaPergunta = document.querySelector('.caixa-perguntas')
+  const caixaPergunta = document.querySelector('.caixa-perguntas');
+  const bannerTela2 = document.querySelector('.img-tela2');
+  bannerTela2.scrollIntoView();
 
   // GERANDO AS OPÇOES DE RESPOSTA
   for (let i = 0; i < infoQuizz.questions.length; i++) {
@@ -50,9 +56,8 @@ function quizzTela2(resposta) {
     let perguntasEmbaralhadas = infoQuizz.questions[i].answers
     perguntasEmbaralhadas.sort(comparador)
     for (let j = 0; j < perguntasEmbaralhadas.length; j++) {
-      tdsRespostas[
-        i
-      ].innerHTML += `<div class="opcao-resposta ${perguntasEmbaralhadas[j].isCorrectAnswer}" onclick="selecionarResposta(this)">
+
+      tdsRespostas[i].innerHTML += `<div class="opcao-resposta ${perguntasEmbaralhadas[j].isCorrectAnswer}" onclick="selecionarResposta(this)">
           <div><img class="img-pergunta" src="${perguntasEmbaralhadas[j].image}"></img></div>
           <p class="opcao-pergunta">${perguntasEmbaralhadas[j].text}</p>
         </div>
@@ -75,26 +80,80 @@ function reiniciarQuizz() {
 }
 
 // COMPORTAMENTO DAS RESPOSTAS
-
 function selecionarResposta(opcaoClicada) {
-  const parente = opcaoClicada.parentNode
-  const todasRespostas = parente.children
-  console.dir(parente.parentNode)
-  const imagens = []
-  for (let i = 0; i < todasRespostas.length; i++) {
-    if (todasRespostas[i].classList.contains('false')) {
-      todasRespostas[i].classList.add('resposta-errada')
-    } else {
-      todasRespostas[i].classList.add('resposta-correta')
-    }
-    imagens.push(todasRespostas[i].firstElementChild)
-    imagens[i].innerHTML += `<div class='esbranquicado'></div>`
-    todasRespostas[i].removeAttribute('onclick')
+  const parente = opcaoClicada.parentNode;
+  const todasRespostas = parente.children;
+  const imagens = [];
+
+  if (opcaoClicada.classList.contains('true')) { //INCREMENTO DA PONTUACAO DO QUIZZ
+    pontuacao++;
   }
-  opcaoClicada.firstElementChild.children[1].remove()
-  setTimeout(scrollar, 2000, parente)
+
+  for (let i = 0; i < todasRespostas.length; i++) { //ADICIONA OS ESTILOS DE CERTO OU ERRADO
+    if (todasRespostas[i].classList.contains('false')) {
+      todasRespostas[i].classList.add('resposta-errada');
+    } else {
+      todasRespostas[i].classList.add('resposta-correta');
+    }
+    imagens.push(todasRespostas[i].firstElementChild);
+    imagens[i].innerHTML += `<div class='esbranquicado'></div>`;
+    todasRespostas[i].removeAttribute('onclick');
+  }
+  opcaoClicada.firstElementChild.children[1].remove();
+
+  const listaDePerguntas = document.querySelector('.caixa-perguntas').childNodes;
+
+  if(parente.parentNode.nextElementSibling) { //Ver se tem mais alguma pergunta pra responder
+    setTimeout(scrollar, 2000, parente);
+  } else { //Se nao tiver, apresentar a tela de resultados
+    const porcentagemDeAcertos = Math.floor((pontuacao / listaDePerguntas.length)*100);
+    setTimeout(mostrarResultado, 2000, porcentagemDeAcertos);
+  }
+  
 }
 
 function scrollar(elemento) {
   elemento.parentNode.nextElementSibling.scrollIntoView()
+}
+
+let levelCertoTeste = 0;
+function mostrarResultado(porcentagemDeAcertos) {
+  const caixaPerguntas = document.querySelector('.caixa-perguntas');
+  console.log(levelsDoQuizz);
+  
+  for (let i=0; i<levelsDoQuizz.length; i++) {
+    if((porcentagemDeAcertos > levelsDoQuizz[i].minValue) && (levelCertoTeste < levelsDoQuizz.length-1)) {
+      levelCertoTeste++;
+    }
+  }
+  caixaPerguntas.innerHTML += `<div class="resultado-quizz">
+                                <header>${porcentagemDeAcertos}% de acerto: ${levelsDoQuizz[levelCertoTeste].title}
+                                </header>
+                                <main>
+                                  <img src="${levelsDoQuizz[levelCertoTeste].image}" alt="Imagem do nivel de acerto do quizz">
+                                  <p>
+                                    ${levelsDoQuizz[levelCertoTeste].text}
+                                  </p>
+                                </main>
+                              </div>
+                              <footer>
+                                <button id='reiniciar-quizz' onclick="reiniciarTela2()">
+                                  Reiniciar Quizz
+                                </button>
+                                <button id='voltar-pra-home' onclick="limparTela2">
+                                  Voltar pra home
+                                </button>
+                              </footer>`;
+  levelCertoTeste = 0;
+  pontuacao = 0;
+  levelsDoQuizz = [];
+
+}
+
+function reiniciarTela2() {
+  const caixaPerguntas = document.querySelector('.caixa-perguntas');
+  caixaPerguntas.innerHTML = '';
+  const bannerTela2 = document.querySelector('.img-tela2');
+  bannerTela2.scrollIntoView();
+  infoQuizz();
 }
