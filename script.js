@@ -21,6 +21,7 @@ function infoQuizz(id) {
   teste.then(quizzTela2)
 }
 function quizzTela2(resposta) {
+  window.scrollTo(0, 0)
   const infoQuizz = resposta.data
   const fecharTela1 = document.querySelector('.tela1')
   fecharTela1.classList.add('display-none')
