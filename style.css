@@ -223,6 +223,48 @@ ul {
   font-size: 20px;
   line-height: 23px;
 }
+.resultado {
+  width: 759px;
+  height: 430px;
+
+  background: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+.footer-tela2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin: 44px 0px 65px 0px;
+}
+.reiniciar {
+  width: 260.38px;
+  height: 52px;
+
+  background: #ec362d;
+  border-radius: 15px;
+
+  margin-top: 56px;
+
+  text-align: center;
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 400;
+  border: none;
+}
+.voltar-home {
+  width: 220px;
+  height: 44px;
+
+  margin-top: 16px;
+
+  text-align: center;
+  color: #818181;
+  font-size: 21px;
+  border: none;
+  background-color: #e5e5e5;
+}
 /* Tela 2 - FIM */
 
 @media (max-width: 1100px) {
@@ -294,9 +336,9 @@ ul {
   color: #009c22;
 }
 .resposta-errada {
-  color:#FF4B4B;
+  color: #ff4b4b;
 }
-.opcao-resposta>div {
+.opcao-resposta > div {
   position: relative;
 }
 .esbranquicado {
@@ -316,21 +358,21 @@ ul {
   align-items: center;
   justify-content: center;
   background-color: #ffffff;
-  box-shadow: 0px 0px 10px 0px #0000000D;
+  box-shadow: 0px 0px 10px 0px #0000000d;
   padding: 18px;
   margin-bottom: 50px;
 }
 .resultado-quizz header {
   width: 100%;
   height: 99px;
-  background-color: #EC362D;
+  background-color: #ec362d;
   color: #ffffff;
   font-weight: 700;
   font-size: 23px;
   text-align: center;
   margin-bottom: 18px;
 }
-.resultado-quizz>main {
+.resultado-quizz > main {
   display: flex;
 }
 .resultado-quizz img {
@@ -338,7 +380,7 @@ ul {
   height: 273px;
   margin-right: 21px;
 }
-.resultado-quizz>main>p {
+.resultado-quizz > main > p {
   color: #484848;
   font-weight: 700;
   font-size: 19px;
@@ -355,19 +397,19 @@ footer {
 #reiniciar-quizz {
   width: 260px;
   height: 52px;
-  background-color: #EC362D;
+  background-color: #ec362d;
   border-radius: 15px;
   text-align: center;
   color: #ffffff;
   font-size: 21px;
   font-weight: 400;
-  border:none;
+  border: none;
 }
 #voltar-pra-home {
   width: 220px;
   height: 44px;
   text-align: center;
-  color:#818181;
+  color: #818181;
   font-size: 21px;
   border: none;
 }
