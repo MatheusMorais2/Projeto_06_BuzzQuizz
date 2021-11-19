@@ -81,16 +81,17 @@ function reiniciarQuizz() {
 
 //INICIO TELA 3
 function tela3() {
-  const fecharTela1 = document.querySelector('.tela1')
-  fecharTela1.classList.add('display-none')
-  const abrirTela3 = document.querySelector('.tela3')
-  abrirTela3.classList.remove('display-none')
+  const fecharTela1 = document.querySelector('.tela1');
+  fecharTela1.classList.add('display-none');
+  const abrirTela3 = document.querySelector('.tela3');
+  abrirTela3.classList.remove('display-none');
 }
 function tela31() {
-  const fecharTela3 = document.querySelector('.tela3')
-  fecharTela3.classList.add('display-none')
-  const abrirTela31 = document.querySelector('.tela31')
-  abrirTela31.classList.remove('display-none')
+  const fecharTela3 = document.querySelector('.tela3');
+  fecharTela3.classList.add('display-none');
+  const abrirTela31 = document.querySelector('.tela31');
+  abrirTela31.classList.remove('display-none');
+
 }
 function tela32() {
   const fecharTela31 = document.querySelector('.tela31')
@@ -144,7 +145,6 @@ function scrollar(elemento) {
 let levelCertoTeste = 0;
 function mostrarResultado(porcentagemDeAcertos) {
   const caixaPerguntas = document.querySelector('.caixa-perguntas');
-  console.log(levelsDoQuizz);
   
   for (let i=0; i<levelsDoQuizz.length; i++) {
     if((porcentagemDeAcertos > levelsDoQuizz[i].minValue) && (levelCertoTeste < levelsDoQuizz.length-1)) {
@@ -165,10 +165,11 @@ function mostrarResultado(porcentagemDeAcertos) {
                                 <button id='reiniciar-quizz' onclick="reiniciarTela2()">
                                   Reiniciar Quizz
                                 </button>
-                                <button id='voltar-pra-home' onclick="limparTela2">
+                                <button id='voltar-pra-home' onclick="limparTela2()">
                                   Voltar pra home
                                 </button>
                               </footer>`;
+  console.dir(caixaPerguntas);
   levelCertoTeste = 0;
   pontuacao = 0;
   levelsDoQuizz = [];
@@ -181,4 +182,52 @@ function reiniciarTela2() {
   const bannerTela2 = document.querySelector('.img-tela2');
   bannerTela2.scrollIntoView();
   infoQuizz(idGlobal);
+}
+
+function limparTela2() {
+  document.querySelector('.tela2').classList.add('display-none');
+  const caixaPerguntas = document.querySelector('.caixa-perguntas');
+  caixaPerguntas.innerHTML = '';
+  document.querySelector('.tela1').classList.remove('display-none');
+  window.scrollTo(0, 0);
+}
+
+function criacaoQuizz () {
+  let objQuizzCriado = {title:'', image:'', questions:[], levels: []};
+
+  const inputTitulo = document.getElementById('criacao-titulo');
+  if((inputTitulo.value.length >= 20) || (inputTitulo.value.length <= 65)){
+    objQuizzCriado.title  = inputTitulo.value;
+  } else {
+    alert('Titulo inadequado. O titulo devera ter entre 20 e 65 caracteres');
+  }
+
+  const inputImagem = document.getElementById('criacao-imagem');
+  if (/^(ftp|http|https):\/\/[^ "]+$/.test(inputImagem.value)){
+    objQuizzCriado.image = inputImagem.value;
+  } else {
+    alert('Url da Imagem invalida, por favor tente outra');
+  }
+
+  const inputQtdPerguntas = document.getElementById('criacao-qnt-perguntas');
+  if (Number.isInteger(inputQtdPerguntas.value) && (inputQtdPerguntas.value >= 3)) {
+    for (let i=0; i<inputQtdPerguntas.value; i++) {
+      objQuizzCriado.questions.push('span');
+    }
+  } else {
+    alert('Quantidade de perguntas invalido, por favor digite um numero maior que 2')
+  }
+  
+  
+  const inputQtdNiveis = document.getElementById('criacao-qtd-niveis');
+  if (Number.isInteger(inputQtdNiveis.value) && (inputQtdNiveis.value >= 3)) {
+    for (let i=0; i<inputQtdNiveis.value; i++) {
+      objQuizzCriado.levels.push('span');
+    }
+  } else {
+    alert('Quantidade de niveis invalido, por favor digite um numero maior que 1')
+  }
+
+  console.log(objQuizzCriado);
+  tela31();
 }

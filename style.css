@@ -625,6 +625,7 @@ ul {
 }
 .resultado-quizz > main {
   display: flex;
+  width: 100%;
 }
 .resultado-quizz img {
   width: 364px;
@@ -635,6 +636,7 @@ ul {
   color: #484848;
   font-weight: 700;
   font-size: 19px;
+  word-break: break-all;
 }
 
 /* Botoes reiniciar Quizz e Voltar pra home */
@@ -648,7 +650,7 @@ footer {
 #reiniciar-quizz {
   width: 260px;
   height: 52px;
-  background-color: #ec362d;
+  background-color: #e5e5e5;
   border-radius: 15px;
   text-align: center;
   color: #ffffff;
