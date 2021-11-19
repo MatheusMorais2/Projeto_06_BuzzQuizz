@@ -266,7 +266,197 @@ ul {
   background-color: #e5e5e5;
 }
 /* Tela 2 - FIM */
+/* Tela 3 - INICIO */
+.tela3 {
+  top: 69px;
+  background-color: #e5e5e5;
+  width: 100%;
+  height: 100%;
+  height: auto;
+  z-index: 2;
+}
+.container-tela3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
+  margin-top: 71px;
+}
+.titulo-tela3 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 23px;
+  line-height: 27px;
+
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+}
+.caixa-formulario {
+  width: 600px;
+  height: 256px;
+  background-color: #ffffff;
+
+  margin-top: 27px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.resposta-formulario {
+  width: 564px;
+  height: 46px;
+
+  background-color: #ffffff;
+  border: 1px solid #d1d1d1;
+  box-sizing: border-box;
+  border-radius: 5px;
+
+  margin-bottom: 9px;
+
+  font-style: italic;
+  font-weight: normal;
+  font-size: 19px;
+  line-height: 22px;
+
+  color: #bababa;
+}
+.prosseguir-perguntas {
+  width: 368.86px;
+  height: 54px;
+
+  background: #ec362d;
+  border-radius: 15px;
+
+  margin-top: 85px;
+
+  text-align: center;
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 400;
+  border: none;
+}
+/* tela 31 */
+.tela31 {
+  top: 69px;
+  background-color: #e5e5e5;
+  width: 100%;
+  height: 100%;
+  height: auto;
+  z-index: 3;
+}
+.container-tela31 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 71px;
+}
+.caixa-formulario-tela31 {
+  width: 600px;
+  height: 825px;
+  background-color: #ffffff;
+
+  margin-top: 36px;
+  padding: 27px 17px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.subtitulo-tela31 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
+/* tela 32 */
+.tela32 {
+  top: 69px;
+  background-color: #e5e5e5;
+  width: 100%;
+  height: 100%;
+  height: auto;
+  z-index: 4;
+}
+.container-tela32 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 63px;
+}
+.caixa-formulario32 {
+  width: 600px;
+  height: 316px;
+  background-color: #ffffff;
+
+  margin-top: 36px;
+  padding: 27px 17px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.resposta-formulario-grande {
+  width: 564px;
+  height: 46px;
+
+  background-color: #ffffff;
+  border: 1px solid #d1d1d1;
+  box-sizing: border-box;
+  border-radius: 5px;
+
+  margin-bottom: 9px;
+
+  font-style: italic;
+  font-weight: normal;
+  font-size: 19px;
+  line-height: 22px;
+
+  color: #bababa;
+}
+/* tela 33 */
+.tela33 {
+  top: 69px;
+  background-color: #e5e5e5;
+  width: 100%;
+  height: 100%;
+  height: auto;
+  z-index: 4;
+}
+.container-tela33 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 71px;
+}
+.img-quizz-pronto {
+  width: 500px;
+  height: 266px;
+  background-color: white;
+
+  margin-top: 46px;
+
+  border-radius: 5px;
+}
+
+/* Tela 3 - FIM */
+
+/* MOBILE */
 @media (max-width: 1100px) {
   /* Tela 1 - INICIO mobile*/
   ul {
@@ -328,6 +518,66 @@ ul {
     font-weight: bold;
     font-size: 13px;
     line-height: 15px;
+  }
+  /* TELA 3 - INICIO mobile */
+  .container-tela3 {
+    margin-top: 37px;
+  }
+  .titulo-tela3 {
+    font-size: 20px;
+    line-height: 23px;
+  }
+  .caixa-formulario {
+    width: 375px;
+    height: 256px;
+  }
+  .resposta-formulario {
+    width: 341px;
+    height: 46px;
+  }
+  .prosseguir-perguntas {
+    width: 324px;
+    height: 54px;
+
+    margin-top: 29px;
+
+    font-size: 18px;
+    line-height: 21px;
+    font-weight: normal;
+
+    margin-bottom: 61px;
+  }
+  /* tela 3.1 */
+  .container-tela31 {
+    margin-top: 38px;
+  }
+  .caixa-formulario-tela31 {
+    width: 375px;
+    height: 825px;
+
+    margin-top: 27px;
+  }
+  /* tela 3.2 */
+  .container-tela32 {
+    margin-top: 39px;
+  }
+  .caixa-formulario32 {
+    width: 375px;
+    height: 439px;
+
+    margin-top: 28px;
+  }
+  .resposta-formulario-grande {
+    width: 341px;
+    height: 177px;
+  }
+  /* tela 33 */
+  .container-tela33 {
+    margin-top: 39px;
+  }
+  .img-quizz-pronto {
+    width: 340px;
+    height: 181px;
   }
 }
 

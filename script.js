@@ -4,21 +4,22 @@ const solicitarQuizzes = axios.get(
 solicitarQuizzes.then(quizzesPag1)
 let pontuacao = 0;
 let levelsDoQuizz = [];
+let idGlobal = 0;
 
 //APRESENTANDO QUIZZES DO SERVIDOR NA TELA 1
 function quizzesPag1(resposta) {
   let quizz = resposta.data
   let containerQuizzes = document.querySelector('ul')
   for (let i = 0; i < quizz.length; i++) {
-    containerQuizzes.innerHTML += `<li style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${quizz[i].image})" class="quizz" onclick="infoQuizz()">
+    containerQuizzes.innerHTML += `<li style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${quizz[i].image})" class="quizz" onclick="infoQuizz(${quizz[i].id})">
     <p class="nome-quizz">${quizz[i].title}</p>
     </li>`
   }
 }
 
-function infoQuizz() {
+function infoQuizz(id) {
   const teste = axios.get(
-    'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/1'
+    `https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`
   )
   teste.then(quizzTela2)
 }
@@ -26,6 +27,8 @@ function infoQuizz() {
 function quizzTela2(resposta) {
   const infoQuizz = resposta.data;
   levelsDoQuizz= infoQuizz.levels;
+  idGlobal = infoQuizz.id;
+  window.scrollTo(0, 0)
   const fecharTela1 = document.querySelector('.tela1')
   fecharTela1.classList.add('display-none')
   const abrirTela2 = document.querySelector('.tela2')
@@ -41,12 +44,9 @@ function quizzTela2(resposta) {
       background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${infoQuizz.image});
     }</style>`
 
-  const caixaPergunta = document.querySelector('.caixa-perguntas');
-  const bannerTela2 = document.querySelector('.img-tela2');
-  bannerTela2.scrollIntoView();
-
   // GERANDO AS OPÇOES DE RESPOSTA
   for (let i = 0; i < infoQuizz.questions.length; i++) {
+    const caixaPergunta = document.querySelector('.caixa-perguntas');
     caixaPergunta.innerHTML += `<div class="pergunta">
     <div style="background-color: ${infoQuizz.questions[i].color}" class="titulo-pergunta">${infoQuizz.questions[i].title}</div>
     <div class="todasRespostas"></div>
@@ -79,6 +79,31 @@ function reiniciarQuizz() {
   zerarCliques.classList.remove('resposta-errada resposta-correta') */
 }
 
+//INICIO TELA 3
+function tela3() {
+  const fecharTela1 = document.querySelector('.tela1')
+  fecharTela1.classList.add('display-none')
+  const abrirTela3 = document.querySelector('.tela3')
+  abrirTela3.classList.remove('display-none')
+}
+function tela31() {
+  const fecharTela3 = document.querySelector('.tela3')
+  fecharTela3.classList.add('display-none')
+  const abrirTela31 = document.querySelector('.tela31')
+  abrirTela31.classList.remove('display-none')
+}
+function tela32() {
+  const fecharTela31 = document.querySelector('.tela31')
+  fecharTela31.classList.add('display-none')
+  const abrirTela32 = document.querySelector('.tela32')
+  abrirTela32.classList.remove('display-none')
+}
+function tela33() {
+  const fecharTela32 = document.querySelector('.tela32')
+  fecharTela32.classList.add('display-none')
+  const abrirTela33 = document.querySelector('.tela33')
+  abrirTela33.classList.remove('display-none')
+}
 // COMPORTAMENTO DAS RESPOSTAS
 function selecionarResposta(opcaoClicada) {
   const parente = opcaoClicada.parentNode;
@@ -155,5 +180,5 @@ function reiniciarTela2() {
   caixaPerguntas.innerHTML = '';
   const bannerTela2 = document.querySelector('.img-tela2');
   bannerTela2.scrollIntoView();
-  infoQuizz();
+  infoQuizz(idGlobal);
 }

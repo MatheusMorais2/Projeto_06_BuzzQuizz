@@ -35,36 +35,158 @@
     <!-- tela 1 - Inicio -->
     <header>BuzzQuizz</header>
     <div class="container">
+      <!-- tela 2 - Fim -->
+      <!-- tela 3 - Inicio -->
+      <div class="tela3 display-none">
+        <div class="container-tela3">
+          <p class="titulo-tela3">Começe pelo começo</p>
+          <div class="caixa-formulario">
+            <input
+              class="resposta-formulario"
+              placeholder="   Título do seu quizz"
+              type="text"
+            />
+            <input
+              class="resposta-formulario"
+              placeholder="   URL da imagem do seu quizz"
+              type="text"
+            />
+            <input
+              class="resposta-formulario"
+              placeholder="   Quantidade de perguntas do quizz"
+              type="text"
+            />
+            <input
+              class="resposta-formulario"
+              placeholder="   Quantidade de níveis do quizz"
+              type="text"
+            />
+          </div>
+          <button class="prosseguir-perguntas" onclick="tela31()">
+            Prosseguir pra criar perguntas
+          </button>
+        </div>
+      </div>
+      <!--  tela 3.1 -->
+      <div class="tela31 display-none">
+        <div class="container-tela31">
+          <p class="titulo-tela3">Crie suas perguntas</p>
+          <div class="caixa-formulario-tela31">
+            <p class="subtitulo-tela31">Pergunta 1</p>
+            <input
+              class="resposta-formulario"
+              placeholder="   Texto da pergunta"
+              type="text"
+            />
+            <input
+              class="resposta-formulario"
+              placeholder="   Cor de fundo da pergunta"
+              type="text"
+            />
+            <p class="subtitulo-tela31">Resposta correta</p>
+            <input
+              class="resposta-formulario"
+              placeholder="   Resposta correta"
+              type="text"
+            />
+            <input
+              class="resposta-formulario"
+              placeholder="   URL da imagem"
+              type="text"
+            />
+            <p class="subtitulo-tela31">Respostas incorretas</p>
+            <input
+              class="resposta-formulario"
+              placeholder="   Resposta incorreta 1"
+              type="text"
+            />
+            <input
+              class="resposta-formulario"
+              placeholder="   URL da imagem 1"
+              type="text"
+            />
+            <input
+              class="resposta-formulario"
+              placeholder="   Resposta incorreta 2"
+              type="text"
+            />
+            <input
+              class="resposta-formulario"
+              placeholder="   URL da imagem 2"
+              type="text"
+            />
+            <input
+              class="resposta-formulario"
+              placeholder="   Resposta incorreta 3"
+              type="text"
+            />
+            <input
+              class="resposta-formulario"
+              placeholder="   URL da imagem 3"
+              type="text"
+            />
+          </div>
+          <button class="prosseguir-perguntas" onclick="tela32()">
+            Prosseguir pra criar níveis
+          </button>
+        </div>
+      </div>
+      <!--tela 3.2-->
+      <div class="tela32 display-none">
+        <div class="container-tela32">
+          <p class="titulo-tela3">Começe pelo começo</p>
+          <div class="caixa-formulario32">
+            <p class="subtitulo-tela31">Nível 1</p>
+            <input
+              class="resposta-formulario"
+              placeholder="   Título do nível"
+              type="text"
+            />
+            <input
+              class="resposta-formulario"
+              placeholder="   % de acerto mínima"
+              type="text"
+            />
+            <input
+              class="resposta-formulario"
+              placeholder="   URL da imagem do nível"
+              type="text"
+            />
+            <input
+              class="resposta-formulario-grande"
+              placeholder="   Descrição do nível"
+              type="text"
+            />
+          </div>
+          <button class="prosseguir-perguntas" onclick="tela33()">
+            Finalizar Quizz
+          </button>
+        </div>
+      </div>
+      <div class="tela33 display-none">
+        <div class="container-tela33">
+          <p class="titulo-tela3">Seu quizz está pronto!</p>
+          <div class="img-quizz-pronto">
+            Aqui vai a imagem e o titulo do quizz
+          </div>
+          <button class="reiniciar" onclick="">Acessar Quizz</button>
+          <button class="voltar-home" onclick="location.reload()">
+            Voltar para home
+          </button>
+        </div>
+      </div>
+      <!-- tela 3 - Fim -->
+      <!-- tela 1 - Inicio -->
       <div class="tela1">
         <div class="seus-quizzes">
           <p>Voce não criou nenhum<br />quizz ainda :(</p>
-          <button class="criar-quizz">Criar Quizz</button>
+          <button class="criar-quizz" onclick="tela3()">Criar Quizz</button>
         </div>
         <div class="todos-quizzes">
           <p class="titulo">Todos os Quizzes</p>
           <ul class="opcoes-quizzes"></ul>
         </div>
       </div>
-
-      <!-- <div class="resultado-quizz">
-        <header>
-
-        </header>
-        <main>
-          <img src="" alt="">
-          <p>
-            asidhosaiuhdosaiudhlasdh
-          </p>
-        </main>
-      </div>
-      <footer>
-        <button id='reiniciar-quizz'>
-          Reiniciar Quizz
-        </button>
-        <button id='voltar-pra-home'>
-          Voltar pra home
-        </button>
-      </footer> -->
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
