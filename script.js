@@ -169,7 +169,8 @@ function mostrarResultado(porcentagemDeAcertos) {
                                   Voltar pra home
                                 </button>
                               </footer>`;
-  console.dir(caixaPerguntas);
+  const resultadoFinal = document.querySelector('.resultado-quizz');
+  resultadoFinal.scrollIntoView();
   levelCertoTeste = 0;
   pontuacao = 0;
   levelsDoQuizz = [];
