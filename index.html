@@ -18,6 +18,35 @@
     <!-- tela 1 - Inicio -->
     <header>BuzzQuizz</header>
     <div class="container">
+      <div class="tela1">
+        <div class="seus-quizzes-criados display-none">
+          <div class="titulo-seus-quizzes">
+            <p class="titulo">Seus quizzes</p>
+            <ion-icon
+              class="botao-criar-quizz"
+              onclick="tela3()"
+              name="add-circle"
+            ></ion-icon>
+          </div>
+          <ul class="lista-seus-quizzes">
+            <li class="quizz" onclick="aposCriarQuizz()">
+              clique para voltar a tela anterior
+            </li>
+          </ul>
+        </div>
+        <div class="seus-quizzes">
+          <p>Voce não criou nenhum<br />quizz ainda :(</p>
+          <button class="criar-quizz" onclick="tela3()">Criar Quizz</button>
+          <!-- TESTE ENQUANTO NAO DA PRA CRIAR QUIZZ - INICIO-->
+          <button class="criar-quizz" onclick="aposCriarQuizz()">Teste</button>
+          <!-- TESTE ENQUANTO NAO DA PRA CRIAR QUIZZ - FIM -->
+        </div>
+        <div class="todos-quizzes">
+          <p class="titulo">Todos os Quizzes</p>
+          <ul class="opcoes-quizzes"></ul>
+        </div>
+      </div>
+      <!-- tela 1 - Fim -->
       <!-- tela 2 - Inicio -->
       <div class="tela2 display-none">
         <div class="cabecalho-tela2"></div>
@@ -29,22 +58,26 @@
         <div class="container-tela3">
           <p class="titulo-tela3">Começe pelo começo</p>
           <div class="caixa-formulario">
-            <input id="criacao-titulo"
+            <input
+              id="criacao-titulo"
               class="resposta-formulario"
               placeholder="   Título do seu quizz"
               type="text"
             />
-            <input id="criacao-imagem"
+            <input
+              id="criacao-imagem"
               class="resposta-formulario"
               placeholder="   URL da imagem do seu quizz"
               type="text"
             />
-            <input id="criacao-qnt-perguntas"
+            <input
+              id="criacao-qnt-perguntas"
               class="resposta-formulario"
               placeholder="   Quantidade de perguntas do quizz"
               type="text"
             />
-            <input id="criacao-qtd-niveis"
+            <input
+              id="criacao-qtd-niveis"
               class="resposta-formulario"
               placeholder="   Quantidade de níveis do quizz"
               type="text"
@@ -60,61 +93,8 @@
         <div class="container-tela31">
           <p class="titulo-tela3">Crie suas perguntas</p>
           <div class="caixa-formulario-tela31">
-            <p class="subtitulo-tela31">Pergunta 1</p>
-            <input
-              class="resposta-formulario"
-              placeholder="   Texto da pergunta"
-              type="text"
-            />
-            <input
-              class="resposta-formulario"
-              placeholder="   Cor de fundo da pergunta"
-              type="text"
-            />
-            <p class="subtitulo-tela31">Resposta correta</p>
-            <input
-              class="resposta-formulario"
-              placeholder="   Resposta correta"
-              type="text"
-            />
-            <input
-              class="resposta-formulario"
-              placeholder="   URL da imagem"
-              type="text"
-            />
-            <p class="subtitulo-tela31">Respostas incorretas</p>
-            <input
-              class="resposta-formulario"
-              placeholder="   Resposta incorreta 1"
-              type="text"
-            />
-            <input
-              class="resposta-formulario"
-              placeholder="   URL da imagem 1"
-              type="text"
-            />
-            <input
-              class="resposta-formulario"
-              placeholder="   Resposta incorreta 2"
-              type="text"
-            />
-            <input
-              class="resposta-formulario"
-              placeholder="   URL da imagem 2"
-              type="text"
-            />
-            <input
-              class="resposta-formulario"
-              placeholder="   Resposta incorreta 3"
-              type="text"
-            />
-            <input
-              class="resposta-formulario"
-              placeholder="   URL da imagem 3"
-              type="text"
-            />
           </div>
-          <button class="prosseguir-perguntas" onclick="tela32()">
+          <button class="prosseguir-perguntas" onclick="validarPerguntas()">
             Prosseguir pra criar níveis
           </button>
         </div>
@@ -164,19 +144,16 @@
         </div>
       </div>
       <!-- tela 3 - Fim -->
-      <!-- tela 1 - Inicio -->
-      <div class="tela1">
-        <div class="seus-quizzes">
-          <p>Voce não criou nenhum<br />quizz ainda :(</p>
-          <button class="criar-quizz" onclick="tela3()">Criar Quizz</button>
-        </div>
-        <div class="todos-quizzes">
-          <p class="titulo">Todos os Quizzes</p>
-          <ul class="opcoes-quizzes"></ul>
-        </div>
-      </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule=""
+      src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"
+    ></script>
   </body>
 </html>
