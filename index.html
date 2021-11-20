@@ -18,6 +18,34 @@
     <!-- tela 1 - Inicio -->
     <header>BuzzQuizz</header>
     <div class="container">
+      <div class="tela1">
+        <div class="seus-quizzes-criados display-none">
+          <div class="titulo-seus-quizzes">
+            <p class="titulo">Seus quizzes</p>
+            <ion-icon
+              class="botao-criar-quizz"
+              onclick="tela3()"
+              name="add-circle"
+            ></ion-icon>
+          </div>
+          <ul class="lista-seus-quizzes">
+            <li class="quizz" onclick="aposCriarQuizz()">
+              clique para voltar a tela anterior
+            </li>
+          </ul>
+        </div>
+        <div class="seus-quizzes">
+          <p>Voce não criou nenhum<br />quizz ainda :(</p>
+          <button class="criar-quizz" onclick="tela3()">Criar Quizz</button>
+          <!-- TESTE ENQUANTO NAO DA PRA CRIAR QUIZZ - INICIO-->
+          <button class="criar-quizz" onclick="aposCriarQuizz()">Teste</button>
+          <!-- TESTE ENQUANTO NAO DA PRA CRIAR QUIZZ - FIM -->
+        </div>
+        <div class="todos-quizzes">
+          <p class="titulo">Todos os Quizzes</p>
+          <ul class="opcoes-quizzes"></ul>
+        </div>
+      </div>
       <!-- tela 1 - Fim -->
       <!-- tela 2 - Inicio -->
       <div class="tela2 display-none">
@@ -169,19 +197,16 @@
         </div>
       </div>
       <!-- tela 3 - Fim -->
-      <!-- tela 1 - Inicio -->
-      <div class="tela1">
-        <div class="seus-quizzes">
-          <p>Voce não criou nenhum<br />quizz ainda :(</p>
-          <button class="criar-quizz" onclick="tela3()">Criar Quizz</button>
-        </div>
-        <div class="todos-quizzes">
-          <p class="titulo">Todos os Quizzes</p>
-          <ul class="opcoes-quizzes"></ul>
-        </div>
-      </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule=""
+      src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"
+    ></script>
   </body>
 </html>

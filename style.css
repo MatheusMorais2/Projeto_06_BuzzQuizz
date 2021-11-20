@@ -72,8 +72,21 @@ header {
   color: #ec362d;
 }
 
+.titulo-seus-quizzes {
+  display: flex;
+  align-items: center;
+  margin-top: 69px;
+  margin-bottom: 13px;
+}
+.botao-criar-quizz {
+  width: 31px;
+  height: 30px;
+  color: red;
+  margin-left: 17px;
+}
+
 .todos-quizzes {
-  width: 1066px;
+  width: 1051px;
 
   margin-top: 5%;
 
@@ -91,12 +104,12 @@ ul {
   font-weight: bold;
   font-size: 20px;
   line-height: 23px;
-
-  margin-left: 15px;
 }
 
 .opcoes-quizzes {
   margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .quizz {
@@ -105,10 +118,10 @@ ul {
   position: relative;
 
   border-radius: 5px;
-  margin-left: 15px;
   margin-bottom: 12px;
 
   background-size: 340px 181px;
+  background-color: rgb(196, 196, 196);
 }
 
 .img-tela2 {
@@ -543,9 +556,6 @@ footer {
   }
   .todos-quizzes {
     width: 340px;
-  }
-  .quizz {
-    margin-left: 0px;
   }
   .titulo {
     margin-left: 0px;

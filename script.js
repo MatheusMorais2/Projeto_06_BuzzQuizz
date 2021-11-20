@@ -9,14 +9,23 @@ let idGlobal = 0
 //APRESENTANDO QUIZZES DO SERVIDOR NA TELA 1
 function quizzesPag1(resposta) {
   let quizz = resposta.data
-  let containerQuizzes = document.querySelector('ul')
+  let containerQuizzes = document.querySelector('.opcoes-quizzes')
   for (let i = 0; i < quizz.length; i++) {
     containerQuizzes.innerHTML += `<li style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${quizz[i].image})" class="quizz" onclick="infoQuizz(${quizz[i].id})">
     <p class="nome-quizz">${quizz[i].title}</p>
     </li>`
   }
 }
-
+/* TESTE */
+/* TESTE ENQUANTO NAO DA PRA CRIAR QUIZZ - INICIO */
+function aposCriarQuizz() {
+  const fecharQuizzVazio = document.querySelector('.seus-quizzes')
+  fecharQuizzVazio.classList.toggle('display-none')
+  const abrirSeusQuizz = document.querySelector('.seus-quizzes-criados')
+  abrirSeusQuizz.classList.toggle('display-none')
+}
+/* TESTE ENQUANTO NAO DA PRA CRIAR QUIZZ - FIM */
+/* TESTE */
 function infoQuizz(id) {
   const teste = axios.get(
     `https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`
