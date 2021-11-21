@@ -483,7 +483,6 @@ footer {
 }
 .caixa-formulario32 {
   width: 600px;
-  height: 316px;
   background-color: #ffffff;
 
   margin-top: 36px;
@@ -659,8 +658,7 @@ footer {
   }
   .caixa-formulario32 {
     width: 375px;
-    height: 439px;
-
+    
     margin-top: 28px;
   }
   .resposta-formulario-grande {

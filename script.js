@@ -87,122 +87,6 @@ function reiniciarQuizz() {
   window.scrollTo(0, 0)
 }
 
-//INICIO TELA 3
-function tela3() {
-  const fecharTela1 = document.querySelector('.tela1')
-  fecharTela1.classList.add('display-none')
-  const abrirTela3 = document.querySelector('.tela3')
-  abrirTela3.classList.remove('display-none')
-}
-function tela31() {
-  const fecharTela3 = document.querySelector('.tela3')
-  fecharTela3.classList.add('display-none')
-  const abrirTela31 = document.querySelector('.tela31')
-  abrirTela31.classList.remove('display-none')
-
-  //COLOCAR O FORMULARIO NA TELA
-  const caixaFormularioTela31 = document.querySelector('.caixa-formulario-tela31');
-  for (let i = 0; i < objQuizzCriado.questions.length; i++) {
-    caixaFormularioTela31.innerHTML += `<p class="subtitulo-tela31">Pergunta ${i+1}</p>
-    <input id="pergunta${i}"
-      class="resposta-formulario"
-      placeholder="   Texto da pergunta ${i+1}"
-      type="text"
-    />
-    <input id="cor-pergunta${i}"
-      class="resposta-formulario cor-pergunta${i}"
-      placeholder="   Cor de fundo da pergunta ${i+1}"
-      type="text"
-    />
-    <p class="subtitulo-tela31">Resposta correta</p>
-    <input id="resposta-correta-pergunta${i}"
-      class="resposta-formulario"
-      placeholder="   Resposta correta"
-      type="text"
-    />
-    <input id="imagem-correta-pergunta${i}"
-      class="resposta-formulario"
-      placeholder="   URL da imagem"
-      type="text"
-    />
-    <p class="subtitulo-tela31">Respostas incorretas</p>
-    <input id="resposta-incorreta-1-pergunta${i}"
-      class="resposta-formulario"
-      placeholder="   Resposta incorreta 1"
-      type="text"
-    />
-    <input id="imagem-incorreta-1-pergunta${i}"
-      class="resposta-formulario"
-      placeholder="   URL da imagem 1"
-      type="text"
-    />
-    <input id="resposta-incorreta-2-pergunta${i}"
-      class="resposta-formulario"
-      placeholder="   Resposta incorreta 2"
-      type="text"
-    />
-    <input id="imagem-incorreta-2-pergunta${i}"
-      class="resposta-formulario"
-      placeholder="   URL da imagem 2"
-      type="text"
-    />
-    <input id="resposta-incorreta-3-pergunta${i}"
-      class="resposta-formulario"
-      placeholder="   Resposta incorreta 3"
-      type="text"
-    />
-    <input id="imagem-incorreta-3-pergunta${i}"
-      class="resposta-formulario"
-      placeholder="   URL da imagem 3"
-      type="text"
-    />`;
-  }
-}
-function validarPerguntas() {
-  let verificadorResposta = 0;
-  let verificadorTitulo = 0;
-
-  for(let i=0; i<objQuizzCriado.questions.length; i++) {
-    objQuizzCriado.questions[i].title = document.getElementById(`pergunta${i}`).value;
-    objQuizzCriado.questions[i].color = document.getElementById(`cor-pergunta${i}`).value;
-    objQuizzCriado.questions[i].answers[0].text = document.getElementById(`resposta-correta-pergunta${i}`).value;
-    objQuizzCriado.questions[i].answers[0].image  = document.getElementById(`imagem-correta-pergunta${i}`).value;
-    objQuizzCriado.questions[i].answers[0].isCorrectAnswer = true;
-    for (let j=1; j < 4; j++){
-        objQuizzCriado.questions[i].answers[j].text  = document.getElementById(`resposta-incorreta-${j}-pergunta${i}`).value;
-        objQuizzCriado.questions[i].answers[j].image  = document.getElementById(`imagem-incorreta-${j}-pergunta${i}`).value;
-        objQuizzCriado.questions[i].answers[j].isCorrectAnswer = false;
-        if (objQuizzCriado.questions[i].answers[j].text === '' || !(/^(ftp|http|https):\/\/[^ "]+$/.test(objQuizzCriado.questions[i].answers[j].image))) {
-          verificadorResposta++;
-        }
-    }
-    if ((objQuizzCriado.questions[i].title < 20) || !(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(objQuizzCriado.questions[i].color))) {
-      verificadorTitulo++;
-    }
-  }
-    
-    if ((verificadorResposta === 0) && (verificadorTitulo === 0)) {
-      tela32();
-    } else {
-      alert('Algum campo esta no formato errado');
-    }
-}
-
-
-function tela32() {
-  const fecharTela31 = document.querySelector('.tela31')
-  fecharTela31.classList.add('display-none')
-  const abrirTela32 = document.querySelector('.tela32')
-  abrirTela32.classList.remove('display-none')
-}
-
-function tela33() {
-  const fecharTela32 = document.querySelector('.tela32')
-  fecharTela32.classList.add('display-none')
-  const abrirTela33 = document.querySelector('.tela33')
-  abrirTela33.classList.remove('display-none')
-}
-
 // COMPORTAMENTO DAS RESPOSTAS
 function selecionarResposta(opcaoClicada) {
   const parente = opcaoClicada.parentNode
@@ -299,6 +183,14 @@ function limparTela2() {
   window.scrollTo(0, 0)
 }
 
+//INICIO TELA 3
+function tela3() {
+  const fecharTela1 = document.querySelector('.tela1')
+  fecharTela1.classList.add('display-none')
+  const abrirTela3 = document.querySelector('.tela3')
+  abrirTela3.classList.remove('display-none')
+}
+
 function criacaoQuizz() {
   let contador = 0;
 
@@ -345,5 +237,186 @@ function criacaoQuizz() {
     inputQtdPerguntas.value = '';
     tela31();
   }
-  
+}
+
+function tela31() {
+  const fecharTela3 = document.querySelector('.tela3')
+  fecharTela3.classList.add('display-none')
+  const abrirTela31 = document.querySelector('.tela31')
+  abrirTela31.classList.remove('display-none')
+
+  //COLOCAR O FORMULARIO NA TELA
+  const caixaFormularioTela31 = document.querySelector('.caixa-formulario-tela31');
+  for (let i = 0; i < objQuizzCriado.questions.length; i++) {
+    caixaFormularioTela31.innerHTML += `<p class="subtitulo-tela31">Pergunta ${i+1}</p>
+    <input id="pergunta${i}"
+      class="resposta-formulario"
+      placeholder="   Texto da pergunta ${i+1}"
+      type="text"
+    />
+    <input id="cor-pergunta${i}"
+      class="resposta-formulario cor-pergunta${i}"
+      placeholder="   Cor de fundo da pergunta ${i+1}"
+      type="text"
+    />
+    <p class="subtitulo-tela31">Resposta correta</p>
+    <input id="resposta-correta-pergunta${i}"
+      class="resposta-formulario"
+      placeholder="   Resposta correta"
+      type="text"
+    />
+    <input id="imagem-correta-pergunta${i}"
+      class="resposta-formulario"
+      placeholder="   URL da imagem"
+      type="text"
+    />
+    <p class="subtitulo-tela31">Respostas incorretas</p>
+    <input id="resposta-incorreta-1-pergunta${i}"
+      class="resposta-formulario"
+      placeholder="   Resposta incorreta 1"
+      type="text"
+    />
+    <input id="imagem-incorreta-1-pergunta${i}"
+      class="resposta-formulario"
+      placeholder="   URL da imagem 1"
+      type="text"
+    />
+    <input id="resposta-incorreta-2-pergunta${i}"
+      class="resposta-formulario"
+      placeholder="   Resposta incorreta 2"
+      type="text"
+    />
+    <input id="imagem-incorreta-2-pergunta${i}"
+      class="resposta-formulario"
+      placeholder="   URL da imagem 2"
+      type="text"
+    />
+    <input id="resposta-incorreta-3-pergunta${i}"
+      class="resposta-formulario"
+      placeholder="   Resposta incorreta 3"
+      type="text"
+    />
+    <input id="imagem-incorreta-3-pergunta${i}"
+      class="resposta-formulario"
+      placeholder="   URL da imagem 3"
+      type="text"
+    />`;
+  }
+}
+function validarPerguntas() {
+  let verificadorResposta = 0;
+  let verificadorTitulo = 0;
+
+  for(let i=0; i<objQuizzCriado.questions.length; i++) {
+    objQuizzCriado.questions[i].title = document.getElementById(`pergunta${i}`).value;
+    objQuizzCriado.questions[i].color = document.getElementById(`cor-pergunta${i}`).value;
+    objQuizzCriado.questions[i].answers[0].text = document.getElementById(`resposta-correta-pergunta${i}`).value;
+    objQuizzCriado.questions[i].answers[0].image  = document.getElementById(`imagem-correta-pergunta${i}`).value;
+    objQuizzCriado.questions[i].answers[0].isCorrectAnswer = true;
+    for (let j=1; j < 4; j++){
+        objQuizzCriado.questions[i].answers[j].text  = document.getElementById(`resposta-incorreta-${j}-pergunta${i}`).value;
+        objQuizzCriado.questions[i].answers[j].image  = document.getElementById(`imagem-incorreta-${j}-pergunta${i}`).value;
+        objQuizzCriado.questions[i].answers[j].isCorrectAnswer = false;
+        if (objQuizzCriado.questions[i].answers[j].text === '' || !(/^(ftp|http|https):\/\/[^ "]+$/.test(objQuizzCriado.questions[i].answers[j].image))) {
+          verificadorResposta++;
+        }
+    }
+    if ((objQuizzCriado.questions[i].title < 20) || !(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(objQuizzCriado.questions[i].color))) {
+      verificadorTitulo++;
+    }
+  }
+    
+    if ((verificadorResposta === 0) && (verificadorTitulo === 0)) {
+      tela32();
+    } else {
+      alert('Algum campo esta no formato errado');
+    }
+}
+
+function tela32() {
+  const fecharTela31 = document.querySelector('.tela31')
+  fecharTela31.classList.add('display-none')
+  const abrirTela32 = document.querySelector('.tela32')
+  abrirTela32.classList.remove('display-none')
+
+  const formulario32 = document.querySelector('.caixa-formulario32');
+  formulario32.innerHTML += `<p class="subtitulo-tela31">Nível 0</p>
+    <input id="nivel-criado-0-titulo"
+      class="resposta-formulario"
+      placeholder="   Título do nível"
+      type="text"
+    />
+    <input id="nivel-criado-0-porcentagem"
+      class="resposta-formulario"
+      placeholder="   Primeiro nivel, que começa aos 0% de acerto"
+      value="0"
+      disabled
+      type="text"
+    />
+    <input id="nivel-criado-0-imagem"
+      class="resposta-formulario"
+      placeholder="   URL da imagem do nível"
+      type="text"
+    />
+    <input  id="nivel-criado-0-descricao"
+      class="resposta-formulario-grande"
+      placeholder="   Descrição do nível"
+      type="text"
+    />`
+  for (let i=1; i < objQuizzCriado.levels.length; i++){
+    formulario32.innerHTML += `<p class="subtitulo-tela31">Nível ${i}</p>
+    <input id="nivel-criado-${i}-titulo"
+      class="resposta-formulario"
+      placeholder="   Título do nível"
+      type="text"
+    />
+    <input id="nivel-criado-${i}-porcentagem"
+      class="resposta-formulario"
+      placeholder="   % de acerto mínima"
+      type="text"
+    />
+    <input id="nivel-criado-${i}-imagem"
+      class="resposta-formulario"
+      placeholder="   URL da imagem do nível"
+      type="text"
+    />
+    <input  id="nivel-criado-${i}-descricao"
+      class="resposta-formulario-grande"
+      placeholder="   Descrição do nível"
+      type="text"
+    />`
+  }
+}
+
+function validarNiveis () {
+  let verificador = 0;
+  for(let i=0; i<objQuizzCriado.levels.length; i++) {
+    objQuizzCriado.levels[i].title = document.getElementById(`nivel-criado-${i}-titulo`).value;
+    objQuizzCriado.levels[i].image = document.getElementById(`nivel-criado-${i}-imagem`).value;
+    objQuizzCriado.levels[i].text = document.getElementById(`nivel-criado-${i}-descricao`).value;
+    objQuizzCriado.levels[i].minValue  = parseInt(document.getElementById(`nivel-criado-${i}-porcentagem`).value);
+    
+    let testeTitle = (objQuizzCriado.levels[i].title.length >= 10);
+    let testeImagem = /^(ftp|http|https):\/\/[^ "]+$/.test(objQuizzCriado.levels[i].image);
+    let testeMinValue = (objQuizzCriado.levels[i].minValue >= 0 && objQuizzCriado.levels[i].minValue <= 100);
+    let testeText = (objQuizzCriado.levels[i].text.length >= 30);
+
+    if (testeImagem && testeMinValue && testeText && testeTitle) {
+    } else {
+      verificador++;
+    }
+  }
+    
+  if (verificador === 0) {
+    tela33();
+  } else {
+    alert('Algum campo esta no formato errado');
+  }
+}
+
+function tela33() {
+  const fecharTela32 = document.querySelector('.tela32')
+  fecharTela32.classList.add('display-none')
+  const abrirTela33 = document.querySelector('.tela33')
+  abrirTela33.classList.remove('display-none')
 }
