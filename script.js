@@ -6,6 +6,7 @@ let pontuacao = 0;
 let levelsDoQuizz = [];
 let idGlobal = 0;
 let objQuizzCriado = { title: '', image: '', questions: [], levels: [] };
+let idsQuizzCriados = [];
 
 //APRESENTANDO QUIZZES DO SERVIDOR NA TELA 1
 function quizzesPag1(resposta) {
@@ -408,15 +409,31 @@ function validarNiveis () {
   }
     
   if (verificador === 0) {
-    tela33();
+    const promessa = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', objQuizzCriado);
+    promessa.then(tela33)
+
   } else {
     alert('Algum campo esta no formato errado');
   }
 }
 
-function tela33() {
-  const fecharTela32 = document.querySelector('.tela32')
-  fecharTela32.classList.add('display-none')
-  const abrirTela33 = document.querySelector('.tela33')
-  abrirTela33.classList.remove('display-none')
-}
+function tela33(respostaQuizzCriado) {
+  const fecharTela32 = document.querySelector('.tela32');
+  fecharTela32.classList.add('display-none');
+  const abrirTela33 = document.querySelector('.tela33');
+  abrirTela33.classList.remove('display-none');
+
+  idsQuizzCriados.push(respostaQuizzCriado.data.id)
+  const quizzCriadoSerializado = JSON.stringify(idsQuizzCriados) ;
+  localStorage.setItem("lista-quizz-criados", quizzCriadoSerializado);
+
+  const telaSucessoQuizz = document.querySelector(".img-quizz-pronto");
+  telaSucessoQuizz.innerHTML = `<li style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${objQuizzCriado.image})" class="img-quizz-pronto"">
+                                <p class="nome-quizz">${objQuizzCriado.title}</p>
+                                </li>
+                                <button class="reiniciar" onclick="infoQuizz(${respostaQuizzCriado.data.id})">Acessar Quizz</button>
+                                <button class="voltar-home" onclick="location.reload()">
+                                Voltar para home
+                                </button>`
+                      }
+
