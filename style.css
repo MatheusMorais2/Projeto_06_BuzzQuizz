@@ -703,6 +703,7 @@ footer {
   }
   .titulo-seus-quizzes {
     justify-content: space-between;
+    margin-top: 38px;
   }
   .botao-criar-quizz {
     margin-left: 0px;
