@@ -464,6 +464,14 @@ footer {
   flex-direction: column;
   justify-content: space-around;
 }
+.expandir {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  align-items: center;
+  margin-top: 10px;
+}
 .subtitulo-tela31 {
   font-style: normal;
   font-weight: bold;
@@ -472,6 +480,11 @@ footer {
   display: flex;
   align-items: center;
   color: #000000;
+}
+.expandir>ion-icon {
+  font-size: 20px;
+  stroke: black;
+  stroke-width: 55px;
 }
 /* tela 32 */
 .tela32 {

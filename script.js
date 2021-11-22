@@ -282,61 +282,12 @@ function tela31() {
   )
   zerarInnerHTML(caixaFormularioTela31);
   for (let i = 0; i < objQuizzCriado.questions.length; i++) {
-    caixaFormularioTela31.innerHTML += `<div data-identifier="question"><p class="subtitulo-tela31">Pergunta ${
-      i + 1
-    }</p>
-    <input id="pergunta${i} " 
-      class="resposta-formulario"
-      placeholder="   Texto da pergunta"
-      type="text"
-    />
-    <input id="cor-pergunta${i}" 
-      class="resposta-formulario cor-pergunta${i}"
-      placeholder="   Cor de fundo da pergunta"
-      type="text"
-    />
-    <p class="subtitulo-tela31">Resposta correta</p>
-    <input id="resposta-correta-pergunta${i}" 
-      class="resposta-formulario"
-      placeholder="   Resposta correta"
-      type="text"
-    />
-    <input id="imagem-correta-pergunta${i}" 
-      class="resposta-formulario"
-      placeholder="   URL da imagem"
-      type="text"
-    />
-    <p class="subtitulo-tela31">Respostas incorretas</p>
-    <input id="resposta-incorreta-1-pergunta${i}"
-      class="resposta-formulario"
-      placeholder="   Resposta incorreta 1"
-      type="text"
-    />
-    <input id="imagem-incorreta-1-pergunta${i}"
-      class="resposta-formulario"
-      placeholder="   URL da imagem 1"
-      type="text"
-    />
-    <input id="resposta-incorreta-2-pergunta${i}"
-      class="resposta-formulario"
-      placeholder="   Resposta incorreta 2"
-      type="text"
-    />
-    <input id="imagem-incorreta-2-pergunta${i}"
-      class="resposta-formulario"
-      placeholder="   URL da imagem 2"
-      type="text"
-    />
-    <input id="resposta-incorreta-3-pergunta${i}"
-      class="resposta-formulario"
-      placeholder="   Resposta incorreta 3"
-      type="text"
-    />
-    <input id="imagem-incorreta-3-pergunta${i}"
-      class="resposta-formulario"
-      placeholder="   URL da imagem 3"
-      type="text"
-    /></div>`
+    caixaFormularioTela31.innerHTML += `<div id="container-pergunta-${i}" data-identifier="question">
+    <div class="expandir">
+      <p class="subtitulo-tela31">Pergunta ${i+1}</p>
+      <ion-icon name="create-outline" onclick="expandirPerguntas(${i})"></ion-icon>
+    </div>
+    </div>`
   }
 }
 function validarPerguntas() {
@@ -399,51 +350,13 @@ function tela32() {
 
   const formulario32 = document.querySelector('.caixa-formulario32')
   zerarInnerHTML(formulario32);
-  formulario32.innerHTML += `<div data-identifier="level"><p class="subtitulo-tela31">Nível 0</p>
-    <input id="nivel-criado-0-titulo"
-      class="resposta-formulario"
-      placeholder="   Título do nível"
-      type="text"
-    />
-    <input id="nivel-criado-0-porcentagem"
-      class="resposta-formulario"
-      placeholder="   % de acerto mínima"
-      value="0"
-      disabled
-      type="text"
-    />
-    <input id="nivel-criado-0-imagem"
-      class="resposta-formulario"
-      placeholder="   URL da imagem do nível"
-      type="text"
-    />
-    <input  id="nivel-criado-0-descricao"
-      class="resposta-formulario-grande"
-      placeholder="   Descrição do nível"
-      type="text"
-    /></div>`
-  for (let i = 1; i < objQuizzCriado.levels.length; i++) {
-    formulario32.innerHTML += `<p class="subtitulo-tela31">Nível ${i}</p>
-    <input id="nivel-criado-${i}-titulo"
-      class="resposta-formulario"
-      placeholder="   Título do nível"
-      type="text"
-    />
-    <input id="nivel-criado-${i}-porcentagem"
-      class="resposta-formulario"
-      placeholder="   % de acerto mínima"
-      type="text"
-    />
-    <input id="nivel-criado-${i}-imagem"
-      class="resposta-formulario"
-      placeholder="   URL da imagem do nível"
-      type="text"
-    />
-    <input  id="nivel-criado-${i}-descricao"
-      class="resposta-formulario-grande"
-      placeholder="   Descrição do nível"
-      type="text"
-    />`
+  for (let i = 0; i < objQuizzCriado.levels.length; i++) {
+    formulario32.innerHTML += `<div id="container-level-${i}" data-identifier="level">
+        <div class="expandir">
+          <p class="subtitulo-tela31">Nivel ${i}</p>
+          <ion-icon name="create-outline" onclick="expandirNiveis(${i})"></ion-icon>
+        </div>
+      </div>`
   }
 }
 
@@ -533,4 +446,114 @@ function removerTelaApresentarQuizz (respostaQuizzCriado) {
 
 function zerarInnerHTML(tela) {
   tela.innerHTML = '';
+}
+
+function expandirPerguntas(i) {
+  const containerPergunta = document.getElementById(`container-pergunta-${i}`);  
+  containerPergunta.innerHTML += `<input id="pergunta${i}" 
+      class="resposta-formulario"
+      placeholder="   Texto da pergunta"
+      type="text"
+    />
+    <input id="cor-pergunta${i}" 
+      class="resposta-formulario cor-pergunta${i}"
+      placeholder="   Cor de fundo da pergunta"
+      type="text"
+    />
+    <p class="subtitulo-tela31">Resposta correta</p>
+    <input id="resposta-correta-pergunta${i}" 
+      class="resposta-formulario"
+      placeholder="   Resposta correta"
+      type="text"
+    />
+    <input id="imagem-correta-pergunta${i}" 
+      class="resposta-formulario"
+      placeholder="   URL da imagem"
+      type="text"
+    />
+    <p class="subtitulo-tela31">Respostas incorretas</p>
+    <input id="resposta-incorreta-1-pergunta${i}"
+      class="resposta-formulario"
+      placeholder="   Resposta incorreta 1"
+      type="text"
+    />
+    <input id="imagem-incorreta-1-pergunta${i}"
+      class="resposta-formulario"
+      placeholder="   URL da imagem 1"
+      type="text"
+    />
+    <input id="resposta-incorreta-2-pergunta${i}"
+      class="resposta-formulario"
+      placeholder="   Resposta incorreta 2"
+      type="text"
+    />
+    <input id="imagem-incorreta-2-pergunta${i}"
+      class="resposta-formulario"
+      placeholder="   URL da imagem 2"
+      type="text"
+    />
+    <input id="resposta-incorreta-3-pergunta${i}"
+      class="resposta-formulario"
+      placeholder="   Resposta incorreta 3"
+      type="text"
+    />
+    <input id="imagem-incorreta-3-pergunta${i}"
+      class="resposta-formulario"
+      placeholder="   URL da imagem 3"
+      type="text"
+    />`
+    const icone = document.querySelector('.expandir>ion-icon');
+    icone.classList.add('display-none');
+}
+
+function expandirNiveis(i) {
+  const containerNivel = document.getElementById(`container-level-${i}`);  
+  if (i===0) {
+    containerNivel.innerHTML += `
+  <input id="nivel-criado-0-titulo"
+    class="resposta-formulario"
+    placeholder="   Título do nível"
+    type="text"
+  />
+  <input id="nivel-criado-0-porcentagem"
+    class="resposta-formulario"
+    placeholder="   % de acerto mínima"
+    value="0"
+    disabled
+    type="text"
+  />
+  <input id="nivel-criado-0-imagem"
+    class="resposta-formulario"
+    placeholder="   URL da imagem do nível"
+    type="text"
+  />
+  <input  id="nivel-criado-0-descricao"
+    class="resposta-formulario-grande"
+    placeholder="   Descrição do nível"
+    type="text"
+  />`
+  } else {
+    containerNivel.innerHTML += `<p class="subtitulo-tela31">Nível ${i}</p>
+    <input id="nivel-criado-${i}-titulo"
+      class="resposta-formulario"
+      placeholder="   Título do nível"
+      type="text"
+    />
+    <input id="nivel-criado-${i}-porcentagem"
+      class="resposta-formulario"
+      placeholder="   % de acerto mínima"
+      type="text"
+    />
+    <input id="nivel-criado-${i}-imagem"
+      class="resposta-formulario"
+      placeholder="   URL da imagem do nível"
+      type="text"
+    />
+    <input  id="nivel-criado-${i}-descricao"
+      class="resposta-formulario-grande"
+      placeholder="   Descrição do nível"
+      type="text"
+    />`
+  }
+  
 }
