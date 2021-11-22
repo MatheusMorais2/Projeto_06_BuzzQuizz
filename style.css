@@ -217,6 +217,7 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
+  word-break: break-all;
 
   color: #ffffff;
 }
@@ -686,6 +687,26 @@ footer {
   .img-quizz-pronto {
     width: 340px;
     height: 181px;
+  }
+  .img-quizz-pronto-filho {
+    width: 340px;
+    height: 181px;
+  }
+  .lista-seus-quizzes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 340px;
+  }
+  .seus-quizzes-criados {
+    width: 340px;
+  }
+  .titulo-seus-quizzes {
+    justify-content: space-between;
+    margin-top: 38px;
+  }
+  .botao-criar-quizz {
+    margin-left: 0px;
   }
 }
 
