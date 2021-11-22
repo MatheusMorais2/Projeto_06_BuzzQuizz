@@ -29,7 +29,7 @@ function quizzesPag1(resposta) {
   let quizz = resposta.data
   let containerQuizzes = document.querySelector('.opcoes-quizzes')
   for (let i = 0; i < quizz.length; i++) {
-    containerQuizzes.innerHTML += `<li style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${quizz[i].image})" class="quizz" onclick="infoQuizz(${quizz[i].id})">
+    containerQuizzes.innerHTML += `<li style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${quizz[i].image})" class="quizz" onclick="infoQuizz(${quizz[i].id})" data-identifier="quizz-card">
     <p class="nome-quizz">${quizz[i].title}</p>
     </li>`
   }
@@ -64,7 +64,7 @@ function quizzTela2(resposta) {
   // GERANDO AS OPÇOES DE RESPOSTA
   for (let i = 0; i < infoQuizz.questions.length; i++) {
     const caixaPergunta = document.querySelector('.caixa-perguntas')
-    caixaPergunta.innerHTML += `<div class="pergunta">
+    caixaPergunta.innerHTML += `<div class="pergunta" data-identifier="question">
     <div style="background-color: ${infoQuizz.questions[i].color}" class="titulo-pergunta">${infoQuizz.questions[i].title}</div>
     <div class="todasRespostas"></div>
     </div>`
@@ -75,7 +75,7 @@ function quizzTela2(resposta) {
     for (let j = 0; j < perguntasEmbaralhadas.length; j++) {
       tdsRespostas[
         i
-      ].innerHTML += `<div class="opcao-resposta ${perguntasEmbaralhadas[j].isCorrectAnswer}" onclick="selecionarResposta(this)">
+      ].innerHTML += `<div class="opcao-resposta ${perguntasEmbaralhadas[j].isCorrectAnswer}" onclick="selecionarResposta(this)" data-identifier="answer">
           <div><img class="img-pergunta" src="${perguntasEmbaralhadas[j].image}"></img></div>
           <p class="opcao-pergunta">${perguntasEmbaralhadas[j].text}</p>
         </div>
@@ -149,7 +149,7 @@ function mostrarResultado(porcentagemDeAcertos) {
       levelCertoTeste++
     }
   }
-  caixaPerguntas.innerHTML += `<div class="resultado-quizz">
+  caixaPerguntas.innerHTML += `<div class="resultado-quizz" data-identifier="quizz-result">
                                 <header>${porcentagemDeAcertos}% de acerto: ${levelsDoQuizz[levelCertoTeste].title}
                                 </header>
                                 <main>
@@ -282,26 +282,26 @@ function tela31() {
   )
   zerarInnerHTML(caixaFormularioTela31);
   for (let i = 0; i < objQuizzCriado.questions.length; i++) {
-    caixaFormularioTela31.innerHTML += `<p class="subtitulo-tela31">Pergunta ${
+    caixaFormularioTela31.innerHTML += `<div data-identifier="question"><p class="subtitulo-tela31">Pergunta ${
       i + 1
     }</p>
-    <input id="pergunta${i}"
+    <input id="pergunta${i} " 
       class="resposta-formulario"
-      placeholder="   Texto da pergunta ${i + 1}"
+      placeholder="   Texto da pergunta"
       type="text"
     />
-    <input id="cor-pergunta${i}"
+    <input id="cor-pergunta${i}" 
       class="resposta-formulario cor-pergunta${i}"
-      placeholder="   Cor de fundo da pergunta ${i + 1}"
+      placeholder="   Cor de fundo da pergunta"
       type="text"
     />
     <p class="subtitulo-tela31">Resposta correta</p>
-    <input id="resposta-correta-pergunta${i}"
+    <input id="resposta-correta-pergunta${i}" 
       class="resposta-formulario"
       placeholder="   Resposta correta"
       type="text"
     />
-    <input id="imagem-correta-pergunta${i}"
+    <input id="imagem-correta-pergunta${i}" 
       class="resposta-formulario"
       placeholder="   URL da imagem"
       type="text"
@@ -336,7 +336,7 @@ function tela31() {
       class="resposta-formulario"
       placeholder="   URL da imagem 3"
       type="text"
-    />`
+    /></div>`
   }
 }
 function validarPerguntas() {
@@ -399,7 +399,7 @@ function tela32() {
 
   const formulario32 = document.querySelector('.caixa-formulario32')
   zerarInnerHTML(formulario32);
-  formulario32.innerHTML += `<p class="subtitulo-tela31">Nível 0</p>
+  formulario32.innerHTML += `<div data-identifier="level"><p class="subtitulo-tela31">Nível 0</p>
     <input id="nivel-criado-0-titulo"
       class="resposta-formulario"
       placeholder="   Título do nível"
@@ -407,7 +407,7 @@ function tela32() {
     />
     <input id="nivel-criado-0-porcentagem"
       class="resposta-formulario"
-      placeholder="   Primeiro nivel, que começa aos 0% de acerto"
+      placeholder="   % de acerto mínima"
       value="0"
       disabled
       type="text"
@@ -421,7 +421,7 @@ function tela32() {
       class="resposta-formulario-grande"
       placeholder="   Descrição do nível"
       type="text"
-    />`
+    /></div>`
   for (let i = 1; i < objQuizzCriado.levels.length; i++) {
     formulario32.innerHTML += `<p class="subtitulo-tela31">Nível ${i}</p>
     <input id="nivel-criado-${i}-titulo"
@@ -500,7 +500,7 @@ function tela33(respostaQuizzCriado) {
   localStorage.setItem('lista-quizz-criados', quizzCriadoSerializado)
 
   const telaSucessoQuizz = document.querySelector('.img-quizz-pronto')
-  telaSucessoQuizz.innerHTML = `<div style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${objQuizzCriado.image})" class="img-quizz-pronto-filho">
+  telaSucessoQuizz.innerHTML = `<div style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${objQuizzCriado.image})" class="img-quizz-pronto-filho" data-identifier="quizz-card">
                                 <p class="nome-quizz">${objQuizzCriado.title}</p>
                                 </div>
                                 <button class="reiniciar" onclick="removerTelaApresentarQuizz(${respostaQuizzCriado.data.id})">Acessar Quizz</button>
@@ -518,7 +518,7 @@ function apresentarQuizzCriado(meusQuizzes) {
 
     let containerQuizCriado = document.querySelector('.lista-seus-quizzes')
     for (let i = 0; i < meusQuizzes.length; i++) {
-      containerQuizCriado.innerHTML += `<li style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${meusQuizzes[i].image})" class="quizz" onclick="infoQuizz(${meusQuizzes[i].id})">
+      containerQuizCriado.innerHTML += `<li style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${meusQuizzes[i].image})" class="quizz" data-identifier="quizz-card" onclick="infoQuizz(${meusQuizzes[i].id})">
       <p class="nome-quizz">${meusQuizzes[i].title}</p>
       </li>`
     }
