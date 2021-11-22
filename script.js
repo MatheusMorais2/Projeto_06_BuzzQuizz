@@ -19,7 +19,11 @@ function separarMeusQuizzes(resposta) {
   let meusQuizzes = quizz.filter(compararQuizzCriados)
   apresentarQuizzCriado(meusQuizzes)
 }
-
+function removerTelaApresentarQuizz(respostaQuizzCriado) {
+  const fecharTela33 = document.querySelector('.tela33')
+  fecharTela33.classList.add('display-none')
+  infoQuizz(respostaQuizzCriado)
+}
 //APRESENTANDO QUIZZES DO SERVIDOR NA TELA 1
 function quizzesPag1(resposta) {
   let quizz = resposta.data
@@ -496,7 +500,7 @@ function tela33(respostaQuizzCriado) {
   localStorage.setItem('lista-quizz-criados', quizzCriadoSerializado)
 
   const telaSucessoQuizz = document.querySelector('.img-quizz-pronto')
-  telaSucessoQuizz.innerHTML = `<div style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${objQuizzCriado.image})" class="img-quizz-pronto"">
+  telaSucessoQuizz.innerHTML = `<div style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${objQuizzCriado.image})" class="img-quizz-pronto-filho">
                                 <p class="nome-quizz">${objQuizzCriado.title}</p>
                                 </div>
                                 <button class="reiniciar" onclick="removerTelaApresentarQuizz(${respostaQuizzCriado.data.id})">Acessar Quizz</button>
