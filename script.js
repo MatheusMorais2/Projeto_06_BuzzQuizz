@@ -135,6 +135,7 @@ function scrollar(elemento) {
 let levelCertoTeste = 0
 function mostrarResultado(porcentagemDeAcertos) {
   const caixaPerguntas = document.querySelector('.caixa-perguntas')
+  zerarInnerHTML(caixaPerguntas);
 
   for (let i = 0; i < levelsDoQuizz.length; i++) {
     if (
@@ -180,7 +181,7 @@ function reiniciarTela2() {
 function limparTela2() {
   document.querySelector('.tela2').classList.add('display-none')
   const caixaPerguntas = document.querySelector('.caixa-perguntas')
-  caixaPerguntas.innerHTML = ''
+  zerarInnerHTML(caixaPerguntas);
   document.querySelector('.tela1').classList.remove('display-none')
   window.scrollTo(0, 0)
 }
@@ -275,6 +276,7 @@ function tela31() {
   const caixaFormularioTela31 = document.querySelector(
     '.caixa-formulario-tela31'
   )
+  zerarInnerHTML(caixaFormularioTela31);
   for (let i = 0; i < objQuizzCriado.questions.length; i++) {
     caixaFormularioTela31.innerHTML += `<p class="subtitulo-tela31">Pergunta ${
       i + 1
@@ -392,6 +394,7 @@ function tela32() {
   abrirTela32.classList.remove('display-none')
 
   const formulario32 = document.querySelector('.caixa-formulario32')
+  zerarInnerHTML(formulario32);
   formulario32.innerHTML += `<p class="subtitulo-tela31">Nível 0</p>
     <input id="nivel-criado-0-titulo"
       class="resposta-formulario"
@@ -496,7 +499,7 @@ function tela33(respostaQuizzCriado) {
   telaSucessoQuizz.innerHTML = `<div style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${objQuizzCriado.image})" class="img-quizz-pronto"">
                                 <p class="nome-quizz">${objQuizzCriado.title}</p>
                                 </div>
-                                <button class="reiniciar" onclick="infoQuizz(${respostaQuizzCriado.data.id})">Acessar Quizz</button>
+                                <button class="reiniciar" onclick="removerTelaApresentarQuizz(${respostaQuizzCriado.data.id})">Acessar Quizz</button>
                                 <button class="voltar-home" onclick="location.reload()">
                                 Voltar para home
                                 </button>`
@@ -516,4 +519,14 @@ function apresentarQuizzCriado(meusQuizzes) {
       </li>`
     }
   }
+}
+
+function removerTelaApresentarQuizz (respostaQuizzCriado) {
+  const fecharTela33 = document.querySelector('.tela33')
+  fecharTela33.classList.add('display-none');
+  infoQuizz(respostaQuizzCriado);
+}
+
+function zerarInnerHTML(tela) {
+  tela.innerHTML = '';
 }
