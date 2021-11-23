@@ -572,8 +572,6 @@ function expandirNiveis(i) {
 }
 
 function verificar (resposta) {
-  console.log(resposta);
-  console.log(resposta.data.key);
   listaIdKeyteste.push({id: resposta.data.id, key: resposta.data.key});
   const listaIdKeySerializadoTeste = JSON.stringify(listaIdKeyteste);
   localStorage.setItem('lista-id-key-teste', listaIdKeySerializadoTeste);
@@ -587,10 +585,6 @@ function deletarQuizz (id){
       header: {'Secret-key': obj.key}
     })
   testeDelete.catch(processarDelete);
-}
-
-function processarDelete(resposta) {
-  console.log(resposta)
 }
 
 function editarQuizz(id) {
