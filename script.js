@@ -6,7 +6,9 @@ let levelsDoQuizz = []
 let idGlobal = 0
 let objQuizzCriado = { title: '', image: '', questions: [], levels: [] }
 let idsKeysQuizzCriados = localStorage.getItem('lista-id-key-teste') //era 'lista-quizz-criados'
-let listaIdKeyteste = JSON.parse(idsKeysQuizzCriados) // Esse array contem as id e as keys dos quizz criados
+console.log(idsKeysQuizzCriados)
+let listaIdKeyteste = [];
+listaIdKeyteste = JSON.parse(idsKeysQuizzCriados) // Esse array contem as id e as keys dos quizz criados
 let onlyCreatedIds = listaIdKeyteste.map( a => a.id); // Esse array contem somente as ids
 
 
