@@ -7,7 +7,12 @@ let idGlobal = 0
 let objQuizzCriado = { title: '', image: '', questions: [], levels: [] }
 let idsKeysQuizzCriados = localStorage.getItem('lista-id-key-teste') //era 'lista-quizz-criados'
 console.log(idsKeysQuizzCriados)
-let listaIdKeyteste = JSON.parse(idsKeysQuizzCriados) // Esse array contem as id e as keys dos quizz criados
+let listaIdKeyteste = [];
+if (JSON.parse(idsKeysQuizzCriados) === null) {
+} else {
+  listaIdKeyteste = JSON.parse(idsKeysQuizzCriados);
+}
+ // Esse array contem as id e as keys dos quizz criados
 let onlyCreatedIds = [];
 if (listaIdKeyteste === null){
 } else {
