@@ -741,3 +741,30 @@ footer {
   top: 0;
   left: 0;
 }
+
+.botoes {
+  background-color: #EC362D;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  position: absolute;
+  right: 0;
+  top: 9px;
+  width: 43px;
+  height: 87px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.botoes>button {
+  background: none;
+  border: none;
+  color: white;
+  height: 50%;
+  
+}
+
+.botoes>button>ion-icon {
+  font-size: 20px;
+  stroke-width: 20px;
+}

@@ -1,29 +1,29 @@
 const solicitarQuizzes = axios.get(
   'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes'
 )
-solicitarQuizzes.then(quizzesPag1)
-solicitarQuizzes.then(separarMeusQuizzes)
 let pontuacao = 0
 let levelsDoQuizz = []
 let idGlobal = 0
 let objQuizzCriado = { title: '', image: '', questions: [], levels: [] }
-let idsQuizzCriados = localStorage.getItem('lista-quizz-criados')
-let listaIdQuizzCriado = JSON.parse(idsQuizzCriados)
+let idsKeysQuizzCriados = localStorage.getItem('lista-id-key-teste') //era 'lista-quizz-criados'
+let listaIdKeyteste = JSON.parse(idsKeysQuizzCriados) // Esse array contem as id e as keys dos quizz criados
+let onlyCreatedIds = listaIdKeyteste.map( a => a.id); // Esse array contem somente as ids
 
-function compararQuizzCriados(value) {
-  return listaIdQuizzCriado.includes(value.id)
+
+solicitarQuizzes.then(quizzesPag1)
+solicitarQuizzes.then(separarMeusQuizzes)
+
+function compararQuizzCriados(value) {  
+    return onlyCreatedIds.includes(value.id); 
 }
 
 function separarMeusQuizzes(resposta) {
   let quizz = resposta.data
   let meusQuizzes = quizz.filter(compararQuizzCriados)
+  
   apresentarQuizzCriado(meusQuizzes)
 }
-function removerTelaApresentarQuizz(respostaQuizzCriado) {
-  const fecharTela33 = document.querySelector('.tela33')
-  fecharTela33.classList.add('display-none')
-  infoQuizz(respostaQuizzCriado)
-}
+
 //APRESENTANDO QUIZZES DO SERVIDOR NA TELA 1
 function quizzesPag1(resposta) {
   let quizz = resposta.data
@@ -392,13 +392,11 @@ function validarNiveis() {
   }
 
   if (verificador === 0) {
-    const promessa = axios.post(
-      'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',
-      objQuizzCriado
-    )
-    promessa.then(tela33)
+    console.log(objQuizzCriado);
+    const promessa = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',objQuizzCriado);
+    promessa.then(tela33);
   } else {
-    alert('Algum campo esta no formato errado')
+    alert('Algum campo esta no formato errado');
   }
 }
 
@@ -408,18 +406,24 @@ function tela33(respostaQuizzCriado) {
   const abrirTela33 = document.querySelector('.tela33')
   abrirTela33.classList.remove('display-none')
 
-  listaIdQuizzCriado.push(respostaQuizzCriado.data.id)
+  listaIdKeyteste.push({id: respostaQuizzCriado.data.id, key: respostaQuizzCriado.data.key});
+  const listaIdKeySerializadoTeste = JSON.stringify(listaIdKeyteste);
+  localStorage.setItem('lista-id-key-teste', listaIdKeySerializadoTeste);
+
+/*   listaIdQuizzCriado.push(respostaQuizzCriado.data.id)
   const quizzCriadoSerializado = JSON.stringify(listaIdQuizzCriado)
-  localStorage.setItem('lista-quizz-criados', quizzCriadoSerializado)
+  localStorage.setItem('lista-quizz-criados', quizzCriadoSerializado) */
 
   const telaSucessoQuizz = document.querySelector('.img-quizz-pronto')
   telaSucessoQuizz.innerHTML = `<div style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${objQuizzCriado.image})" class="img-quizz-pronto-filho" data-identifier="quizz-card">
                                 <p class="nome-quizz">${objQuizzCriado.title}</p>
-                                </div>
-                                <button class="reiniciar" onclick="removerTelaApresentarQuizz(${respostaQuizzCriado.data.id})">Acessar Quizz</button>
-                                <button class="voltar-home" onclick="location.reload()">
-                                Voltar para home
-                                </button>`
+                                </div>`
+  const containerSucessoQuizz = document.querySelector('.container-tela33')
+  containerSucessoQuizz.innerHTML += `<button class="reiniciar" onclick="removerTelaApresentarQuizz(${respostaQuizzCriado.data.id})">Acessar Quizz</button>
+                                      <button class="voltar-home" onclick="location.reload()">
+                                      Voltar para home
+                                      </button>`
+                                
 }
 
 function apresentarQuizzCriado(meusQuizzes) {
@@ -431,9 +435,18 @@ function apresentarQuizzCriado(meusQuizzes) {
 
     let containerQuizCriado = document.querySelector('.lista-seus-quizzes')
     for (let i = 0; i < meusQuizzes.length; i++) {
+
       containerQuizCriado.innerHTML += `<li style="background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${meusQuizzes[i].image})" class="quizz" data-identifier="quizz-card" onclick="infoQuizz(${meusQuizzes[i].id})">
-      <p class="nome-quizz">${meusQuizzes[i].title}</p>
-      </li>`
+                                          <p class="nome-quizz">${meusQuizzes[i].title}</p>
+                                          <div class="botoes" onclick="event.stopPropagation()" >
+                                            <button onclick="editarQuizz(${meusQuizzes[i].id})">
+                                              <ion-icon name="create-outline"></ion-icon>
+                                            </button>
+                                            <button onclick="deletarQuizz(${meusQuizzes[i].id})">
+                                              <ion-icon name="trash-outline"></ion-icon>
+                                            </button>
+                                          </div>
+                                        </li>`
     }
   }
 }
@@ -533,7 +546,7 @@ function expandirNiveis(i) {
     type="text"
   />`
   } else {
-    containerNivel.innerHTML += `<p class="subtitulo-tela31">Nível ${i}</p>
+    containerNivel.innerHTML += `
     <input id="nivel-criado-${i}-titulo"
       class="resposta-formulario"
       placeholder="   Título do nível"
@@ -557,3 +570,36 @@ function expandirNiveis(i) {
   }
   
 }
+
+function verificar (resposta) {
+  console.log(resposta);
+  console.log(resposta.data.key);
+  listaIdKeyteste.push({id: resposta.data.id, key: resposta.data.key});
+  const listaIdKeySerializadoTeste = JSON.stringify(listaIdKeyteste);
+  localStorage.setItem('lista-id-key-teste', listaIdKeySerializadoTeste);
+}
+
+function deletarQuizz (id){ 
+  const obj = listaIdKeyteste.find(elemento => elemento.id === id)
+  const testeDelete = axios({
+      method: 'delete',
+      url: `https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${obj.id}`,
+      header: {'Secret-key': obj.key}
+    })
+  testeDelete.catch(processarDelete);
+}
+
+function processarDelete(resposta) {
+  console.log(resposta)
+}
+
+function editarQuizz(id) {
+  const obj = listaIdKeyteste.find(elemento => elemento.id === id)
+  const testeEditar = axios({
+      method: 'put',
+      url: `https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${obj.id}`,
+      header: {'Secret-key': obj.key}
+    })
+  testeEditar.catch(processarDelete);
+}
+ 
